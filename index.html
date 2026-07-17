@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Mishri ❤️</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 30%, #e8eaf6 70%, #c5cae9 100%);
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Floating hearts background */
+    .hearts-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .heart-float {
+      position: absolute;
+      font-size: 20px;
+      animation: floatUp linear infinite;
+      opacity: 0.3;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(0deg) scale(0.5);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.4;
+      }
+      90% {
+        opacity: 0.4;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(720deg) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* Main card */
+    .card {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 32px;
+      padding: 48px 40px;
+      box-shadow:
+        0 20px 60px rgba(233, 30, 99, 0.15),
+        0 0 0 1px rgba(255, 255, 255, 0.5);
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Header stickers */
+    .header-stickers {
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 8px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .header-stickers span {
+      display: inline-block;
+      margin: 0 6px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      color: #d81b60;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+
+    h1 .sub {
+      display: block;
+      font-size: 18px;
+      font-weight: 400;
+      color: #ad1457;
+      margin-top: 6px;
+      letter-spacing: 2px;
+    }
+
+    /* Divider */
+    .divider {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #e91e63, transparent);
+      margin: 0 auto 28px;
+      border-radius: 4px;
+    }
+
+    /* Message */
+    .message {
+      color: #333;
+      line-height: 1.9;
+      font-size: 16px;
+    }
+
+    .message p {
+      margin-bottom: 18px;
+    }
+
+    .message .emoji-line {
+      text-align: center;
+      font-size: 22px;
+      margin: 20px 0;
+      letter-spacing: 8px;
+    }
+
+    .highlight {
+      color: #d81b60;
+      font-weight: 600;
+    }
+
+    .big-sorry {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: #c62828;
+      margin: 28px 0 18px;
+      letter-spacing: 4px;
+    }
+
+    .signature {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 18px;
+      color: #555;
+    }
+
+    .signature .name {
+      font-size: 22px;
+      font-weight: 700;
+      color: #d81b60;
+      display: block;
+      margin-top: 6px;
+    }
+
+    /* Footer stickers row */
+    .footer-stickers {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 36px;
+      letter-spacing: 10px;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    /* Responsive */
+    @media (max-width: 500px) {
+      .card {
+        padding: 32px 20px;
+        border-radius: 24px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+      .message {
+        font-size: 14px;
+      }
+      .big-sorry {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Hearts Background -->
+  <div class="hearts-bg" id="heartsBg"></div>
+
+  <!-- Main Card -->
+  <div class="card">
+    <div class="header-stickers">
+      <span>🌷</span>
+      <span>💖</span>
+      <span>🌸</span>
+      <span>💕</span>
+      <span>🌹</span>
+    </div>
+
+    <h1>
+      मेरी सॉरी
+      <span class="sub">💌 A Letter from the Heart</span>
+    </h1>
+
+    <div class="divider"></div>
+
+    <div class="message">
+
+      <p>मेरी प्यारी <span class="highlight">Mishri</span> ❤️,</p>
+
+      <p>
+        Please mujhe ek baar maaf kar do. Mujhse jo bhi hua, uski poori zimmedari meri hai.
+        Main koi bahana nahi banaunga, kyunki galti meri hi thi. Mujhe sach mein bahut bura
+        lag raha hai ki meri wajah se tumhe dukh hua. Main jab se yeh sab hua hai tab se
+        bas isi baat ka afsos hai ki maine bina soche-samjhe aisi baatein keh di jo kabhi
+        nahi kehni chahiye thi.
+      </p>
+
+      <p>
+        Main dil se tumse bahut pyaar karta hoon. Kabhi-kabhi gusse ya emotions mein main
+        bina soche bol deta hoon, aur baad mein realize hota hai ki meri baaton ne tumhe
+        kitni takleef di hogi. Yeh meri kami hai, aur main isse badalna chahta hoon.
+        Main <span class="highlight">wada</span> karta hoon ki apni in aadaton par kaam karunga
+        aur khud ko pehle se behtar insaan banaunga.
+      </p>
+
+      <p>
+        Tum mere liye sirf ek insaan nahi ho. Tum meri zindagi ka bahut hi special hissa ho.
+        Tumhari smile, tumhari care, tumhara nature... sab kuch mere liye bahut precious hai.
+        Aur haan, tum bahut hi <span class="highlight">beautiful</span> ho — sirf dekhne mein hi nahi,
+        balki dil se bhi. Shayad main har baar apni feelings sahi tarah se express nahi kar pata,
+        lekin meri feelings hamesha sach hoti hain.
+      </p>
+
+      <div class="emoji-line">💔 ➡️ ❤️‍🩹 ➡️ ❤️</div>
+
+      <p>
+        Main nahi chahta ki meri ek galti humare rishte se zyada badi ban jaaye. Agar mumkin ho,
+        to is baar bhi mujhe maaf kar do. Main tumhara trust dobara jeetna chahta hoon.
+        Main actions se dikhana chahta hoon ki main waqai badal sakta hoon.
+      </p>
+
+      <p>
+        Please ek mauka aur de do. Main tumhe kabhi jaan-boojhkar hurt nahi karna chahta tha
+        aur na hi kabhi chahunga. Mujhe bas tumhari muskurahat wapas dekhni hai.
+      </p>
+
+      <div class="big-sorry">
+        I am really, really sorry, Mishri 💔
+      </div>
+
+      <p style="text-align:center;">
+        Please forgive me. I love you with all my heart,<br>
+        and I never want to lose someone as special as you. 💖
+      </p>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="signature">
+      Hamesha tumhara,
+      <span class="name">— Sumit ❤️</span>
+    </div>
+
+    <div class="footer-stickers">
+      <span>🤗</span>
+      <span>💗</span>
+      <span>🌸</span>
+      <span>💞</span>
+      <span>🌷</span>
+      <span>🥺</span>
+    </div>
+  </div>
+
+  <script>
+    // Floating hearts generator
+    const bg = document.getElementById('heartsBg');
+    const symbols = ['❤️', '💖', '💕', '🌸', '🌷', '💗', '✨', '🥺'];
+    const colors = ['#e91e63', '#f06292', '#ec407a', '#d81b60', '#ad1457', '#ce93d8'];
+
+    for (let i = 0; i < 30; i++) {
+      const el = document.createElement('div');
+      el.className = 'heart-float';
+      el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      el.style.left = Math.random() * 100 + '%';
+      el.style.fontSize = (14 + Math.random() * 24) + 'px';
+      el.style.animationDuration = (8 + Math.random() * 14) + 's';
+      el.style.animationDelay = (Math.random() * 12) + 's';
+      el.style.opacity = 0.2 + Math.random() * 0.3;
+      bg.appendChild(el);
+    }
+  </script>
+</body>
+</html>
