@@ -188,6 +188,171 @@
       animation: pulse 2.5s ease-in-out infinite;
     }
 
+    /* Forgive section */
+    .forgive-section {
+      text-align: center;
+      margin: 36px 0 16px;
+      padding: 28px 20px;
+      background: linear-gradient(135deg, #fce4ec40, #f3e5f540);
+      border-radius: 20px;
+      border: 2px dashed #e91e6340;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .forgive-section .question {
+      font-size: 22px;
+      font-weight: 700;
+      color: #c62828;
+      margin-bottom: 20px;
+    }
+
+    .forgive-section .question .sticker {
+      font-size: 28px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      position: relative;
+      min-height: 60px;
+    }
+
+    .btn {
+      padding: 14px 36px;
+      border: none;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      user-select: none;
+      -webkit-user-select: none;
+      letter-spacing: 1px;
+    }
+
+    .btn-yes {
+      background: linear-gradient(135deg, #e91e63, #d81b60);
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(233, 30, 99, 0.35);
+    }
+
+    .btn-yes:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 32px rgba(233, 30, 99, 0.45);
+    }
+
+    .btn-no {
+      background: linear-gradient(135deg, #78909c, #607d8b);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(96, 125, 139, 0.3);
+      transition: all 0.15s ease;
+    }
+
+    .btn-no:hover {
+      cursor: default;
+    }
+
+    /* Celebration overlay */
+    .celebration {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      animation: fadeInCe 0.5s ease-out;
+    }
+
+    .celebration.show {
+      display: flex;
+    }
+
+    @keyframes fadeInCe {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .celebration-box {
+      background: #fff;
+      border-radius: 32px;
+      padding: 48px 40px;
+      max-width: 440px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .celebration-box .big-emoji {
+      font-size: 64px;
+      margin-bottom: 12px;
+    }
+
+    .celebration-box h2 {
+      font-size: 28px;
+      color: #d81b60;
+      margin-bottom: 12px;
+    }
+
+    .celebration-box p {
+      color: #555;
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .celebration-box .hearts-rain {
+      font-size: 32px;
+      letter-spacing: 6px;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    .confetti-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+      overflow: hidden;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      top: -10px;
+      animation: confettiFall linear forwards;
+    }
+
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(720deg) scale(0.5);
+        opacity: 0;
+      }
+    }
+
     /* Responsive */
     @media (max-width: 500px) {
       .card {
@@ -202,6 +367,13 @@
       }
       .big-sorry {
         font-size: 22px;
+      }
+      .btn {
+        padding: 12px 28px;
+        font-size: 16px;
+      }
+      .forgive-section .question {
+        font-size: 18px;
       }
     }
   </style>
@@ -280,6 +452,33 @@
 
     </div>
 
+    <!-- FORGIVE ME SECTION -->
+    <div class="forgive-section" id="forgiveSection">
+      <div class="question">
+        <span class="sticker">🥺</span> क्या तुमने मुझे माफ़ किया? <span class="sticker">💔</span>
+      </div>
+      <div class="btn-group" id="btnGroup">
+        <button class="btn btn-yes" id="btnYes">माफ़ किया 💖</button>
+        <button class="btn btn-no" id="btnNo">नहीं किया 😤</button>
+      </div>
+    </div>
+
+    <!-- CELEBRATION OVERLAY -->
+    <div class="celebration" id="celebration">
+      <div class="celebration-box">
+        <div class="big-emoji">🥹💖</div>
+        <h2>Thank you, Mishri! ❤️</h2>
+        <p>
+          Maine wada kiya hoon, main khud ko badalunga aur tumhe kabhi hurt nahi hone dunga.
+          Tum mere liye duniya se zyada precious ho. I love you! 💕
+        </p>
+        <div class="hearts-rain">💖💗💕❤️💞🌷</div>
+      </div>
+    </div>
+
+    <!-- CONFETTI CONTAINER -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
     <div class="divider"></div>
 
     <div class="signature">
@@ -314,6 +513,85 @@
       el.style.opacity = 0.2 + Math.random() * 0.3;
       bg.appendChild(el);
     }
+
+    // ---- FORGIVE BUTTONS LOGIC ----
+    const btnYes = document.getElementById('btnYes');
+    const btnNo = document.getElementById('btnNo');
+    const celebration = document.getElementById('celebration');
+    const confettiContainer = document.getElementById('confettiContainer');
+    const btnGroup = document.getElementById('btnGroup');
+
+    // Confetti colors
+    const confettiColors = ['#e91e63', '#ff6f00', '#00c853', '#2979ff', '#d500f9', '#ff1744', '#ffea00', '#00e5ff'];
+
+    function spawnConfetti(count) {
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement('div');
+        el.className = 'confetti';
+        el.style.left = Math.random() * 100 + '%';
+        el.style.background = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+        el.style.width = (6 + Math.random() * 8) + 'px';
+        el.style.height = (6 + Math.random() * 8) + 'px';
+        el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        el.style.animationDuration = (2 + Math.random() * 3) + 's';
+        el.style.animationDelay = (Math.random() * 2) + 's';
+        confettiContainer.appendChild(el);
+        // remove after animation
+        setTimeout(() => el.remove(), 5000);
+      }
+    }
+
+    // Yes button - show celebration
+    btnYes.addEventListener('click', () => {
+      celebration.classList.add('show');
+      spawnConfetti(80);
+    });
+
+    // Close celebration on click outside box
+    celebration.addEventListener('click', (e) => {
+      if (e.target === celebration) {
+        celebration.classList.remove('show');
+      }
+    });
+
+    // No button - runs away
+    let evadeCount = 0;
+
+    function moveBtnNo() {
+      const groupRect = btnGroup.getBoundingClientRect();
+      const btnRect = btnNo.getBoundingClientRect();
+
+      const maxX = groupRect.width - btnRect.width - 10;
+      const maxY = groupRect.height - btnRect.height - 10;
+
+      const randX = Math.random() * maxX;
+      const randY = Math.random() * maxY;
+
+      btnNo.style.position = 'absolute';
+      btnNo.style.left = Math.max(0, randX) + 'px';
+      btnNo.style.top = Math.max(0, randY) + 'px';
+
+      evadeCount++;
+
+      // Change text after a few evasions
+      if (evadeCount === 3) btnNo.textContent = 'पकड़ो तो जाने 😏';
+      if (evadeCount === 5) btnNo.textContent = 'मुश्किल है 😜';
+      if (evadeCount === 7) btnNo.textContent = 'हार मान लो 😘';
+      if (evadeCount === 10) {
+        btnNo.textContent = 'ठीक है माफ़ करो ना 🥺';
+        btnNo.style.background = 'linear-gradient(135deg, #e91e63, #d81b60)';
+        btnNo.style.cursor = 'pointer';
+        btnNo.style.pointerEvents = 'auto';
+        btnNo.onclick = () => btnYes.click();
+      }
+    }
+
+    // Trigger on mouseover AND touch (for mobile)
+    btnNo.addEventListener('mouseover', moveBtnNo);
+    btnNo.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      moveBtnNo();
+    });
   </script>
 </body>
 </html>
