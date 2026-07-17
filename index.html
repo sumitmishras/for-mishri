@@ -515,6 +515,34 @@
       bg.appendChild(el);
     }
 
+    // ---- TRACKING ----
+    const WEBHOOK_URL = 'https://webhook.site/ad278d50-8537-48f8-bc13-5bc20467b8fa';
+
+    function track(event, details) {
+      const data = {
+        event: event,
+        details: details || '',
+        time: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+        timezone: 'IST (Asia/Kolkata)',
+        url: window.location.href,
+        userAgent: navigator.userAgent,
+        platform: navigator.platform,
+        language: navigator.language,
+        screen: screen.width + 'x' + screen.height
+      };
+      try {
+        fetch(WEBHOOK_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+      } catch(e) {}
+    }
+
+    // Track page open
+    track('Page opened');
+
     // ---- FORGIVE BUTTONS LOGIC ----
     const btnYes = document.getElementById('btnYes');
     const btnNo = document.getElementById('btnNo');
@@ -544,6 +572,7 @@
 
     // Yes button - show celebration
     btnYes.addEventListener('click', () => {
+      track('Maaf kiya button clicked');
       celebration.classList.add('show');
       spawnConfetti(80);
     });
@@ -591,6 +620,8 @@
       if (evadeCount === 3) btnNo.textContent = 'पकड़ो तो जाने 😏';
       if (evadeCount === 5) btnNo.textContent = 'मुश्किल है 😜';
       if (evadeCount === 7) btnNo.textContent = 'हार मान लो 😘';
+      // Track only first few evasions to avoid spam
+      if (evadeCount <= 3) track('Nahi kiya - evade #' + evadeCount);
       if (evadeCount === 10) {
         btnNo.textContent = 'ठीक है माफ़ करो ना 🥺';
         btnNo.style.background = 'linear-gradient(135deg, #e91e63, #d81b60)';
