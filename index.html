@@ -212,13 +212,11 @@
     }
 
     .btn-group {
+      position: relative;
+      min-height: 80px;
       display: flex;
-      gap: 20px;
       justify-content: center;
       align-items: center;
-      flex-wrap: wrap;
-      position: relative;
-      min-height: 60px;
     }
 
     .btn {
@@ -228,8 +226,6 @@
       font-size: 18px;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
       user-select: none;
       -webkit-user-select: none;
       letter-spacing: 1px;
@@ -239,6 +235,9 @@
       background: linear-gradient(135deg, #e91e63, #d81b60);
       color: #fff;
       box-shadow: 0 6px 24px rgba(233, 30, 99, 0.35);
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 2;
     }
 
     .btn-yes:hover {
@@ -251,6 +250,8 @@
       color: #fff;
       box-shadow: 0 4px 16px rgba(96, 125, 139, 0.3);
       transition: all 0.15s ease;
+      position: absolute;
+      z-index: 1;
     }
 
     .btn-no:hover {
@@ -557,19 +558,32 @@
     // No button - runs away
     let evadeCount = 0;
 
+    // Initial position: to the right of btnYes
+    function initBtnNoPos() {
+      const groupRect = btnGroup.getBoundingClientRect();
+      const yesRect = btnYes.getBoundingClientRect();
+      const noW = btnNo.offsetWidth;
+      const gap = 20;
+      // Position it to the right of btnYes with a gap
+      const yesOffsetX = yesRect.left - groupRect.left;
+      btnNo.style.left = (yesOffsetX + yesRect.width + gap) + 'px';
+      btnNo.style.top = ((groupRect.height - btnNo.offsetHeight) / 2) + 'px';
+    }
+
     function moveBtnNo() {
       const groupRect = btnGroup.getBoundingClientRect();
-      const btnRect = btnNo.getBoundingClientRect();
+      const noW = btnNo.offsetWidth;
+      const noH = btnNo.offsetHeight;
+      const padding = 5;
 
-      const maxX = groupRect.width - btnRect.width - 10;
-      const maxY = groupRect.height - btnRect.height - 10;
+      const maxX = Math.max(0, groupRect.width - noW - padding * 2);
+      const maxY = Math.max(0, groupRect.height - noH - padding * 2);
 
-      const randX = Math.random() * maxX;
-      const randY = Math.random() * maxY;
+      const randX = padding + Math.random() * maxX;
+      const randY = padding + Math.random() * maxY;
 
-      btnNo.style.position = 'absolute';
-      btnNo.style.left = Math.max(0, randX) + 'px';
-      btnNo.style.top = Math.max(0, randY) + 'px';
+      btnNo.style.left = Math.min(randX, groupRect.width - noW - padding) + 'px';
+      btnNo.style.top = Math.min(randY, groupRect.height - noH - padding) + 'px';
 
       evadeCount++;
 
@@ -585,6 +599,12 @@
         btnNo.onclick = () => btnYes.click();
       }
     }
+
+    // Initial position after a short delay to ensure rendering
+    setTimeout(initBtnNoPos, 100);
+
+    // Re-position on resize
+    window.addEventListener('resize', initBtnNoPos);
 
     // Trigger on mouseover AND touch (for mobile)
     btnNo.addEventListener('mouseover', moveBtnNo);
